@@ -1,14 +1,12 @@
 
 # coding: utf-8
 
-# In[4]:
+# In[22]:
 
 
 #import os
 import subprocess
 import queue as qu
-
-resultQueue=qu.Queue()
 
 def Button1(event):
     #import imports
@@ -73,42 +71,59 @@ def chooseFile(queue):
     
 
 
-# In[5]:
+# In[37]:
+dataForLabel=""
+if __name__=='__main__':
+    try:
+        f=open("information.txt", "r")
+        dataForLabel=f.read()
+        print(dataForLabel)
+    finally:
+        print("data")
+        f.close()
 
-
+    
 import threading 
 import tkinter as tk
+
+resultQueue=qu.Queue()
+
 root = tk.Tk()
 #root.resizable(width=False, height=False)
-root.title('InVision')
-rootHeight=560
-rootWidth=480
-root.geometry('{}x{}'.format(rootHeight,rootWidth))
+root.title('InVisio')
+rootHeight=540
+rootWidth=512
+root.geometry('{}x{}'.format(rootWidth,rootHeight))
 #root.geometry('{}x{}'.format(460, 350))
 
-leftframe = tk.Frame(root, bg='cyan', width=210, height=rootHeight, pady=10)
-rightframe = tk.Frame(root, bg='blue', width=350, height=rootHeight, pady=10)
+#printText="Your Organization is x"
 
+leftframe = tk.Frame(root, bg='cyan', width=210, height=rootHeight, pady=10)
+rightframe = tk.Frame(root, bg='white', width=450, height=450, pady=10)
+bottomRight= tk.Frame(root, bg='white', width=310, height=320, pady=12,padx=-1)
 #center = Frame(root, bg='gray2', width=50, height=40, padx=3, pady=3)
 #btm_frame = Frame(root, bg='white', width=450, height=45, pady=3)
 #btm_frame2 = Frame(root, bg='lavender', width=450, height=60, pady=3)
 
-root.grid_rowconfigure(0, weight=1)
-root.grid_columnconfigure(0, weight=1)
+#root.grid_rowconfigure(0, weight=1)
+#root.grid_columnconfigure(0, weight=1)
 
 leftframe.grid(row=0,column=0,sticky="w")
 rightframe.grid(row=0,column=1,sticky="n")
+bottomRight.grid(row=0,column=1,sticky="s")
 
-button_1=tk.Button(leftframe,text="Start surveillance",height =3, width =15 ,relief="groove",activebackground="yellow")
-button_2=tk.Button(leftframe,text="Use on a Video",height =3, width =15,activebackground="yellow" )
-button_3=tk.Button(leftframe,text="Log File",height =3, width =15,activebackground="yellow")
-button_4=tk.Button(leftframe,text="Use on a Photo",height =3, width =15,activebackground="yellow")
-button_5=tk.Button(leftframe,text="About",height =3, width =15,activebackground="yellow")
+button_1=tk.Button(leftframe,bg='orange',text="Start surveillance",height =3, width =15 ,relief="groove",activebackground="pink",font=("Times", "12", "bold italic"))
+button_2=tk.Button(leftframe,bg='orange',text="Use on a Video",height =3, width =15,activebackground="pink",font=("Times", "12", "bold italic"))
+button_3=tk.Button(leftframe,bg='orange',text="Log File",height =3, width =15,activebackground="pink",font=("Times", "12", "bold italic"))
+button_4=tk.Button(leftframe,bg='orange',text="Use on a Photo",height =3, width =15,activebackground="pink",font=("Times", "12", "bold italic"))
+button_5=tk.Button(leftframe,bg='orange',text="About",height =3, width =15,activebackground="pink",font=("Times", "12", "bold italic"))
 
-label=tk.Label(leftframe,text="INVISION",height=4,width=15,font=("Courier", 15))
+label=tk.Label(leftframe,bg='gray',fg='gold',text="INVISIO",height=4,width=13,font=("Courier", 17,'bold'))
+label2=tk.Label(rightframe,bg='cyan',text=dataForLabel,height=8,width=25,font=("Courier", 15,'bold'))
+#label3=tk.Label(rightframe)
 
 #button_1.config( height = 20, width = 23 )
-button_1.bind("<Button-1>",Button1)
+button_1.bind("<ButtonRelease-3> ",Button1)
 button_2.bind("<Button-1>",Button2)
 button_3.bind("<Button-1>",Button3)
 button_4.bind("<Button-1>",Button4)
@@ -116,11 +131,13 @@ button_5.bind("<Button-1>",Button5)
 
 
 label.grid(row=0,column=1,pady=5,padx=5)
-button_1.grid(row=1, column=1,pady=10,padx=10)
-button_2.grid(row=2, column=1,pady=10,padx=5)
-button_3.grid(row=3, column=1,pady=10,padx=5)
-button_4.grid(row=4, column=1,pady=10,padx=5)
-button_5.grid(row=5, column=1,pady=10,padx=5)
+label2.grid(row=0,column=1,pady=5,padx=5)
+#label3.grid(row=1,column=1,pady=5,padx=5)
+button_1.grid(row=1, column=1,pady=5,padx=10)
+button_2.grid(row=2, column=1,pady=5,padx=5)
+button_3.grid(row=3, column=1,pady=5,padx=5)
+button_4.grid(row=4, column=1,pady=5,padx=5)
+button_5.grid(row=5, column=1,pady=5,padx=5)
 #button_1.pack()
 #button_2.pack()
 #button_3.pack()
@@ -129,7 +146,7 @@ button_5.grid(row=5, column=1,pady=10,padx=5)
 #leftframe.pack()
 
 
-# In[ ]:
+# In[38]:
 
 
 root.mainloop()
