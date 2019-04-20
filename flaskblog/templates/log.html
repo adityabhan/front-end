@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ image_file }}">
+        
+		<div class="media-body">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+		  <p class="text-secondary">
+		  {{(" {}  "+"Date {}-{}-{}").format(date_time.strftime("%A"),date_time.day,date_time.month,date_time.year)}}<br>
+		  {{("Time  {}").format(date_time.strftime("%H:%M:%S"))}}
+		  </p>
+		  </div>
+        
+      </div>
+
+    </div>
+	<div class="content-section">  
+		Select a date to view that day's log 
+			<form action="#" method="POST">
+				<input type="date" name="bday">		
+				
+				<input class="btn btn btn-secondary mt-3" onmousedown="(function(){
+				a=document.getElementsByName('bday');
+				alert('Hey i am calling '+a);
+				
+				})();" type="submit" value="Submit">
+				      {{ form.date (class="form-control-label") }}
+
+			</form>
+				
+		</div>	
+{% endblock content %}
